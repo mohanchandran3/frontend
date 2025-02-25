@@ -8,7 +8,7 @@ import { listingContainerStyles, titleStyles, productGridStyles } from "../style
 
 const ProductListingPage = () => {
   const [products, setProducts] = useState([]);
-  const [filters] = useState({});
+  const [filters, setFilters] = useState({});
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -22,6 +22,14 @@ const ProductListingPage = () => {
 
     fetchProducts();
   }, [filters]); 
+
+  const handleSearch = (searchTerm) => {
+    setFilters((prevFilters) => ({ ...prevFilters, search: searchTerm }));
+  };
+
+  const handleFilter = (filterParams) => {
+    setFilters((prevFilters) => ({ ...prevFilters, ...filterParams }));
+  };
 
   return (
     <Container maxWidth="lg" sx={listingContainerStyles}>
@@ -37,7 +45,7 @@ const ProductListingPage = () => {
       >
         Want to add your products?
       </Button>
-      <SearchAndFilter />
+      <SearchAndFilter onSearch={handleSearch} onFilter={handleFilter} />
       <Box sx={productGridStyles}>
         {products.length > 0 ? (
           products.map((product) => (
