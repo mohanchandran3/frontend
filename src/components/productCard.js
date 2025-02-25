@@ -1,5 +1,5 @@
 import React from "react";
-import { CardContent, Typography, Button, Box } from "@mui/material";
+import { CardContent, Typography, Button } from "@mui/material";
 import { StyledCard } from "../styles/productCard.styles";
 import { Link } from "react-router-dom"; 
 

@@ -3,7 +3,7 @@ import ProductCard from "../components/productCard";
 import SearchAndFilter from "../components/searchAndFilter";
 import productService from "../services/productService";
 import { Container, Typography, Box, Button } from "@mui/material";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
 import { listingContainerStyles, titleStyles, productGridStyles } from "../styles/productListingPage.styles";
 
 const ProductListingPage = () => {
@@ -11,17 +11,17 @@ const ProductListingPage = () => {
   const [filters] = useState({});
 
   useEffect(() => {
-    fetchProducts();
-  }, [filters]);
+    const fetchProducts = async () => {
+      try {
+        const data = await productService.getProducts(filters);
+        setProducts(data.products);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
 
-  const fetchProducts = async () => {
-    try {
-      const data = await productService.getProducts(filters);
-      setProducts(data.products);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
-  };
+    fetchProducts();
+  }, [filters]); 
 
   return (
     <Container maxWidth="lg" sx={listingContainerStyles}>

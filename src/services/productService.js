@@ -32,8 +32,10 @@ const createProduct = async (productData) => {
   }
 };
 
-export default {
+const productService = {
   getProducts,
   getProductById,
-  createProduct, 
+  createProduct,
 };
+
+export default productService;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Container, Typography, Box, Button, Paper, Stack } from "@mui/material";
+import { Container, Typography, Box, Button, Paper } from "@mui/material";
 import productService from "../services/productService";
 import { Link } from "react-router-dom";
 import {
